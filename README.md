@@ -3,9 +3,10 @@ Analyzes the size of vendor.js in Ember-CLI build
 
 ## Usage
 
-1. checkout this project
-2. in `src` directory run command `javac sk/Main.java` (you must have JDK installed on your computer)
-3. run `java sk.Main` with one parameter - the absolute path of your *vendor.js* file
+Notice: you must have a Java (JRE) installed on your computer.
+
+1. download the JAR file from this repository
+2. run `java -jar <name-of-the-jar>` with one parameter - the absolute path of your *vendor.js* file
 
 You will get an output with module names ant their size, like this:
 
