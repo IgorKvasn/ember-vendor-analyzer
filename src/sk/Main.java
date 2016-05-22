@@ -15,9 +15,8 @@ public class Main {
     List<ModuleInfo> moduleNames = new LinkedList<>();
 
     public void doIt(String buildFilePath) throws Exception {
+        BigDecimal bytes = new BigDecimal(0);
         try (BufferedReader br = Files.newBufferedReader(Paths.get(buildFilePath), StandardCharsets.UTF_8)) {
-
-            BigDecimal bytes = new BigDecimal(0);
             for (String line = null; (line = br.readLine()) != null; ) {
                 if (line.startsWith("define('")) {
                     String module = line.substring("define('".length(), line.indexOf("/", "define('".length()));
@@ -38,7 +37,9 @@ public class Main {
             currentModule.size = nextModule.lineNumberStart.subtract(currentModule.lineNumberStart);
         }
 
-        //todo posledny modul nema zatial velkost vypocitanu
+        ModuleInfo lastModule = moduleNames.get(moduleNames.size() - 1);
+        lastModule.size=bytes.subtract(lastModule.lineNumberStart);
+
 
         Collections.sort(moduleNames, new Comparator<ModuleInfo>() {
             @Override
